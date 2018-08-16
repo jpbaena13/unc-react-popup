@@ -20,4 +20,4 @@ Popup.open({
 
 ## Documentation
 
-Documentation and demo can be found here: http://jpbaena13.github.io/unc-react-page-transitions/
+Documentation and demo can be found here: http://jpbaena13.github.io/unc-react-popup/
