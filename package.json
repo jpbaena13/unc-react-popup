@@ -1,6 +1,6 @@
 {
   "name": "unc-react-popup",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "React Popup Component developing by Unico Digital",
   "main": "dist/index.js",
   "scripts": {
@@ -9,7 +9,14 @@
     "test": "ava",
     "build": "babel src --out-dir dist --copy-files"
   },
-  "keywords": [],
+  "keywords": [
+    "react",
+    "js",
+    "javascript",
+    "jpbaena13",
+    "react-component",
+    "popup"
+  ],
   "author": "Juan Baena <juan.baena@unicodigital.co>",
   "license": "MIT",
   "peerDependencies": {
@@ -51,14 +58,6 @@
     "type": "git",
     "url": "https://github.com/jpbaena13/unc-react-popup.git"
   },
-  "keywords": [
-    "react",
-    "js",
-    "javascript",
-    "jpbaena13",
-    "react-component",
-    "popup"
-  ],
   "bugs": {
     "url": "https://github.com/jpbaena13/unc-react-popup/issues"
   },
