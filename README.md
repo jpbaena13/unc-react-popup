@@ -7,6 +7,8 @@ import React from 'react';
 import { render } from 'react-dom';
 import Popup from 'unc-react-popup';
 
+import '../dist/assets/popup.css';
+
 render(
   <Popup />,
   document.getElementById('app')
