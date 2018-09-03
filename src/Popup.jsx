@@ -4,6 +4,8 @@ import Store from './Store';
 
 import Constants from './Constants';
 
+import VideoIFrame from './components/VideoIFrame';
+
 // Init settings for a popup
 const initPopup = {
   id: null,
@@ -80,7 +82,7 @@ class Popup extends React.Component {
     let popup = null;
 
     if (typeof settings === 'string') {
-      popup = { ...initPopup, ...{ settings } };
+      popup = { ...initPopup, ...{ content: settings } };
     } else {
       popup = { ...initPopup, ...settings };
     }
@@ -127,11 +129,26 @@ class Popup extends React.Component {
     const className = (this.state.popup && this.state.popup.className) || this.props.className;
 
     if (this.state.popup) {
+      let { content } = this.state.popup;
+      let paddingContent = null;
+
+      if (this.state.popup.videoId) {
+        content = <VideoIFrame videoId={this.state.popup.videoId}
+                               autoPlay={this.state.popup.autoPlay} />;
+        paddingContent = 0;
+      }
+
       popupWrapper = (
         <div className={`${className}-wrapper`}
              key={this.state.popup.id}
              onClick={ e => e.stopPropagation() }
-             style={{ minWidth: this.state.popup.minWidth, maxWidth: this.state.popup.maxWidth }}>
+             style={
+                {
+                  minWidth: this.state.popup.minWidth,
+                  maxWidth: this.state.popup.maxWidth,
+                  width: this.state.popup.width
+                }
+              }>
 
           {this.state.popup.title
             && <div className={`${className}-header`}>
@@ -139,8 +156,8 @@ class Popup extends React.Component {
               </div>
           }
 
-          <div className={`${className}-content`}>
-            {this.state.popup.content}
+          <div className={`${className}-content`} style={{ padding: paddingContent }}>
+            {content}
           </div>
 
           {(this.state.popup.btnAccept || this.state.popup.btnCancel)

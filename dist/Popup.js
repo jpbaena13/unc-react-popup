@@ -11,6 +11,8 @@ var _Store = _interopRequireDefault(require("./Store"));
 
 var _Constants = _interopRequireDefault(require("./Constants"));
 
+var _VideoIFrame = _interopRequireDefault(require("./components/VideoIFrame"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -157,6 +159,17 @@ function (_React$Component) {
       var className = this.state.popup && this.state.popup.className || this.props.className;
 
       if (this.state.popup) {
+        var content = this.state.popup.content;
+        var paddingContent = null;
+
+        if (this.state.popup.videoId) {
+          content = _react.default.createElement(_VideoIFrame.default, {
+            videoId: this.state.popup.videoId,
+            autoPlay: this.state.popup.autoPlay
+          });
+          paddingContent = 0;
+        }
+
         popupWrapper = _react.default.createElement("div", {
           className: "".concat(className, "-wrapper"),
           key: this.state.popup.id,
@@ -165,13 +178,17 @@ function (_React$Component) {
           },
           style: {
             minWidth: this.state.popup.minWidth,
-            maxWidth: this.state.popup.maxWidth
+            maxWidth: this.state.popup.maxWidth,
+            width: this.state.popup.width
           }
         }, this.state.popup.title && _react.default.createElement("div", {
           className: "".concat(className, "-header")
         }, this.state.popup.title), _react.default.createElement("div", {
-          className: "".concat(className, "-content")
-        }, this.state.popup.content), (this.state.popup.btnAccept || this.state.popup.btnCancel) && _react.default.createElement("div", {
+          className: "".concat(className, "-content"),
+          style: {
+            padding: paddingContent
+          }
+        }, content), (this.state.popup.btnAccept || this.state.popup.btnCancel) && _react.default.createElement("div", {
           className: "".concat(className, "-footer")
         }, this.state.popup.btnAccept && _react.default.createElement("button", {
           className: "".concat(className, "-btn-accept"),
@@ -206,7 +223,7 @@ function (_React$Component) {
 
       if (typeof settings === 'string') {
         popup = _objectSpread({}, initPopup, {
-          settings: settings
+          content: settings
         });
       } else {
         popup = _objectSpread({}, initPopup, settings);

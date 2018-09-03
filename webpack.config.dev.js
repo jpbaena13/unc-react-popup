@@ -6,6 +6,9 @@ module.exports = {
     path: path.resolve(__dirname, 'example/dist'),
     filename: 'unc-react-popup.js'
   },
+  devServer: {
+    port: 9000,
+  },
   module: {
     rules: [
       {
